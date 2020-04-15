@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import {addSpell, removeSpell} from './actions/appActions'
+import {addSpell, removeSpell, fetchSpells} from './store/actions/spellActions'
+import SpellList from './components/SpellList'
 
 import './App.css';
 
 function App(props) {
+  useEffect(()=>{
+    props.fetchSpells()
+  },[])
   return (
     <div className="App">
       <div className="mySpells">just some filler</div>
-      <div className="allSpell"><SpellList spells={spells}/></div>
+      <div className="allSpell"><SpellList spells={props.spells}/></div>
     </div>
   );
 }
@@ -16,10 +20,10 @@ function App(props) {
 const mapStateToProps = state => {
   console.log(state)
   return {
-    spells:state
+    spells:state.spells.spells
   };
 };
 
 export default connect(
   mapStateToProps,
-  {addSpell, removeSpell})(App)
+  {fetchSpells ,addSpell , removeSpell})(App)

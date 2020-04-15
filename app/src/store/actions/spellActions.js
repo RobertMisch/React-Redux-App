@@ -1,28 +1,27 @@
 import axios from 'axios'
 
-export const removeFeature = (id)=>{
-    console.log('remove feature working')
-    return{type:'REMOVE_FEATURE', payload:id}
+export const removeSpell= (id)=>{
+    console.log('remove spell working')
+    return{type:'REMOVE_SPELL', payload:id}
 }
-export const addFeature = (id)=>{
-    console.log('add feature working')
-    return{type:'ADD_FEATURE', payload:id}
+export const addSpell = (id)=>{
+    console.log('add spell working')
+    return{type:'ADD_SPELL', payload:id}
 }
 
 export const fetchSpells = () => {
+  console.log('fetchSpells fetching')
     return dispatch => {
-      dispatch({ type: 'FETCH_SPELL_START' });
+      dispatch({ type: 'FETCH_SPELLS_START' });
       axios
-        .get('')//http://dnd5eapi.co/api/spells
+        .get('http://www.dnd5eapi.co/api/spells')//http://www.dnd5eapi.co/api/spells
         .then(res => {
-          // res.data.quote
-          dispatch({ type: 'FETCH_SPELL_SUCCESS', payload: res.data });
+          console.log(res)
+          dispatch({ type: 'FETCH_SPELLS_SUCCESS', payload: res.data });
         })
         .catch(err => {
-          // message: err.response.data
-          // status: err.response.status
           dispatch({
-            type: 'FETCH_SPELL_FAILURE',
+            type: 'FETCH_SPELLS_FAILURE',
             payload: `Error ${err.response.status}: ${err.response.data}`
           });
         });
