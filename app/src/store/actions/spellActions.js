@@ -27,3 +27,21 @@ export const fetchSpells = () => {
         });
     };
   };
+
+export const fetchSpellDetails = (spellIndex) => {
+  return dispatch => {
+    dispatch({ type: 'FETCH_SPELLDETAILS_START' });
+    axios
+      .get(`http://www.dnd5eapi.co/api/spells/${spellIndex}`)//http://www.dnd5eapi.co/api/spells
+      .then(res => {
+        console.log(res)
+        dispatch({ type: 'FETCH_SPELLDETAILS_SUCCESS', payload: res.data });
+      })
+      .catch(err => {
+        dispatch({
+          type: 'FETCH_SPELLDETAILS_FAILURE',
+          payload: `Error ${err.response.status}: ${err.response.data}`
+        });
+      });
+  };
+};
