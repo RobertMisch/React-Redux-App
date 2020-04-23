@@ -1,5 +1,6 @@
 import React from 'react';
-// import {fetchSpellDetails} from './store/actions/spellActions'
+import {fetchSpellDetails} from '../store/actions/spellActions'
+import { connect } from 'react-redux';
 import '../App.css'
 
 const SpellCard = props => {
@@ -8,13 +9,13 @@ const SpellCard = props => {
     <div className='spellcard'>
       <p className='spellname'>{props.spells.name}</p>
       <button className="addbutton" onClick={()=>{}}>Add</button>
-      <button className="detailsbutton" onClick={()=>{}}>Show Details</button>
+      <button className="detailsbutton" onClick={()=>{props.fetchSpellDetails(props.spells.index)}}>Show Details</button>
     </div>
   );
 };
 
-export default SpellCard
+// export default SpellCard
 
-// export default connect(
-//     mapStateToProps,
-//     {...props,fetchSpellDetails, addSpell, removeSpell})(SpellCard)
+export default connect(
+    null,
+    { fetchSpellDetails })(SpellCard)
