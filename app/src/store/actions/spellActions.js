@@ -14,7 +14,7 @@ export const fetchSpells = () => {
     return dispatch => {
       dispatch({ type: 'FETCH_SPELLS_START' });
       axios
-        .get('http://www.dnd5eapi.co/api/spells')//http://www.dnd5eapi.co/api/spells
+        .get('https://www.dnd5eapi.co/api/spells')//http://www.dnd5eapi.co/api/spells
         .then(res => {
           console.log(res)
           dispatch({ type: 'FETCH_SPELLS_SUCCESS', payload: res.data });
@@ -32,7 +32,7 @@ export const fetchSpellDetails = (spellIndex) => {
   return dispatch => {
     dispatch({ type: 'FETCH_SPELLDETAILS_START' });
     axios
-      .get(`http://www.dnd5eapi.co/api/spells/${spellIndex}`)//http://www.dnd5eapi.co/api/spells
+      .get(`https://www.dnd5eapi.co/api/spells/${spellIndex}`)//http://www.dnd5eapi.co/api/spells
       .then(res => {
         console.log(res)
         dispatch({ type: 'FETCH_SPELLDETAILS_SUCCESS', payload: res.data });
